@@ -63,35 +63,24 @@
       </a>
 
       <nav class="primary-nav" id="primaryNav" aria-label="Navegación principal">
-        <div class="mobile-nav-header">
-          <div class="mobile-nav-brand">
-            <img src="assets/img/logo-160.webp" alt="Catracho Ponche" width="34" height="34">
-            <span>Catracho Ponche</span>
-          </div>
-          <button class="icon-btn ghost mobile-nav-close" type="button" data-action="toggle-nav" aria-label="Cerrar menú">
-            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
-          </button>
-        </div>
-        <div class="nav-links-wrap">
-          <button class="nav-link active" type="button" data-action="switch-view" data-view="menu" data-nav-view="menu">
-            <i class="fa-solid fa-mug-hot" aria-hidden="true"></i><span data-i18n="nav.menu">Menú</span>
-          </button>
-          <button class="nav-link" type="button" data-action="switch-view" data-view="heritage" data-nav-view="heritage">
-            <i class="fa-solid fa-award" aria-hidden="true"></i><span data-i18n="nav.heritage">Historia</span>
-          </button>
-          <button class="nav-link" type="button" data-action="switch-view" data-view="craft" data-nav-view="craft">
-            <i class="fa-solid fa-flask-vial" aria-hidden="true"></i><span data-i18n="nav.craft">Proceso</span>
-          </button>
-          <button class="nav-link" type="button" data-action="switch-view" data-view="calculator" data-nav-view="calculator">
-            <i class="fa-solid fa-calculator" aria-hidden="true"></i><span data-i18n="nav.catering">Eventos</span>
-          </button>
-          <button class="nav-link" type="button" data-action="switch-view" data-view="team" data-nav-view="team">
-            <i class="fa-solid fa-users" aria-hidden="true"></i><span data-i18n="nav.team">Equipo</span>
-          </button>
-          <button class="nav-link nav-link-account" type="button" data-action="open-account" data-nav-view="account">
-            <i class="fa-solid fa-user" aria-hidden="true"></i><span data-i18n="nav.account">Mi cuenta</span>
-          </button>
-        </div>
+        <button class="nav-link active" type="button" data-action="switch-view" data-view="menu" data-nav-view="menu">
+          <i class="fa-solid fa-mug-hot" aria-hidden="true"></i><span data-i18n="nav.menu">Menú</span>
+        </button>
+        <button class="nav-link" type="button" data-action="switch-view" data-view="heritage" data-nav-view="heritage">
+          <i class="fa-solid fa-award" aria-hidden="true"></i><span data-i18n="nav.heritage">Historia</span>
+        </button>
+        <button class="nav-link" type="button" data-action="switch-view" data-view="craft" data-nav-view="craft">
+          <i class="fa-solid fa-flask-vial" aria-hidden="true"></i><span data-i18n="nav.craft">Proceso</span>
+        </button>
+        <button class="nav-link" type="button" data-action="switch-view" data-view="calculator" data-nav-view="calculator">
+          <i class="fa-solid fa-calculator" aria-hidden="true"></i><span data-i18n="nav.catering">Eventos</span>
+        </button>
+        <button class="nav-link" type="button" data-action="switch-view" data-view="team" data-nav-view="team">
+          <i class="fa-solid fa-users" aria-hidden="true"></i><span data-i18n="nav.team">Equipo</span>
+        </button>
+        <button class="nav-link nav-link-account" type="button" data-action="open-account" data-nav-view="account">
+          <i class="fa-solid fa-user" aria-hidden="true"></i><span data-i18n="nav.account">Mi cuenta</span>
+        </button>
       </nav>
 
       <div class="header-actions">
@@ -122,15 +111,12 @@
           <span class="account-label" id="accountLabel" data-i18n="nav.login">Ingresar</span>
         </button>
 
-        <button class="icon-btn menu-toggle" type="button" data-action="toggle-nav" aria-label="Abrir menú" aria-expanded="false" aria-controls="primaryNav">
+        <button class="icon-btn menu-toggle" type="button" data-action="toggle-nav" aria-label="Abrir menú" aria-expanded="false" aria-controls="navDrawer">
           <i class="fa-solid fa-bars" aria-hidden="true"></i>
         </button>
       </div>
     </div>
   </header>
-
-  <!-- Telón de fondo para menú móvil -->
-  <div class="nav-backdrop" id="navBackdrop" data-action="toggle-nav" aria-hidden="true"></div>
 
   <!-- ======================================================================
        CONTENIDO PRINCIPAL
@@ -523,6 +509,56 @@
       <p class="footer-local"><i class="fa-solid fa-lock" aria-hidden="true"></i> <span data-i18n="footer.local">Datos guardados localmente en tu navegador.</span></p>
     </div>
   </footer>
+
+  <!-- ======================================================================
+       MENÚ MÓVIL DESLIZABLE (Drawer overlay independiente)
+       ====================================================================== -->
+  <div class="overlay drawer-overlay" id="navDrawer" data-close="nav" aria-hidden="true">
+    <aside class="cart-drawer mobile-nav-drawer" role="dialog" aria-modal="true" aria-label="Menú de navegación">
+      <header class="drawer-head mobile-drawer-head">
+        <div class="mobile-nav-brand">
+          <img src="assets/img/logo-160.webp" alt="Catracho Ponche" width="34" height="34">
+          <span>Catracho Ponche</span>
+        </div>
+        <button class="icon-btn ghost" type="button" data-action="close-nav" aria-label="Cerrar menú">
+          <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+        </button>
+      </header>
+
+      <nav class="mobile-drawer-links" aria-label="Navegación móvil">
+        <button class="nav-link active" type="button" data-action="switch-view" data-view="menu" data-nav-view="menu">
+          <i class="fa-solid fa-mug-hot" aria-hidden="true"></i><span data-i18n="nav.menu">Menú</span>
+        </button>
+        <button class="nav-link" type="button" data-action="switch-view" data-view="heritage" data-nav-view="heritage">
+          <i class="fa-solid fa-award" aria-hidden="true"></i><span data-i18n="nav.heritage">Historia</span>
+        </button>
+        <button class="nav-link" type="button" data-action="switch-view" data-view="craft" data-nav-view="craft">
+          <i class="fa-solid fa-flask-vial" aria-hidden="true"></i><span data-i18n="nav.craft">Proceso</span>
+        </button>
+        <button class="nav-link" type="button" data-action="switch-view" data-view="calculator" data-nav-view="calculator">
+          <i class="fa-solid fa-calculator" aria-hidden="true"></i><span data-i18n="nav.catering">Eventos</span>
+        </button>
+        <button class="nav-link" type="button" data-action="switch-view" data-view="team" data-nav-view="team">
+          <i class="fa-solid fa-users" aria-hidden="true"></i><span data-i18n="nav.team">Equipo</span>
+        </button>
+        <button class="nav-link nav-link-account" type="button" data-action="open-account" data-nav-view="account">
+          <i class="fa-solid fa-user" aria-hidden="true"></i><span data-i18n="nav.account">Mi cuenta</span>
+        </button>
+      </nav>
+
+      <div class="mobile-drawer-footer">
+        <div class="drawer-footer-actions">
+          <button class="btn btn-secondary btn-sm" type="button" data-action="open-favorites">
+            <i class="fa-solid fa-heart" aria-hidden="true"></i> <span data-i18n="nav.favorites">Favoritos</span>
+          </button>
+          <button class="btn btn-primary btn-sm" type="button" data-action="open-cart">
+            <i class="fa-solid fa-bag-shopping" aria-hidden="true"></i> <span data-i18n="nav.cart">Mi pedido</span>
+          </button>
+        </div>
+        <p class="drawer-tagline" data-i18n="brand.tagline">Warmth in a Cup</p>
+      </div>
+    </aside>
+  </div>
 
   <!-- ======================================================================
        CARRITO DESLIZABLE

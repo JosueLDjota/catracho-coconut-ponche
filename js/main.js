@@ -980,13 +980,15 @@
     'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
   function openOverlay(id) {
-    closeNav();
+    if (id !== "navDrawer") closeNav();
     closeSearch();
     const overlay = document.getElementById(id);
     if (!overlay) return;
     state.lastFocused = document.activeElement;
     overlay.classList.add("active");
     document.body.classList.add("modal-open");
+    const toggle = $(".menu-toggle");
+    if (id === "navDrawer" && toggle) toggle.setAttribute("aria-expanded", "true");
     window.setTimeout(() => {
       const focusable = overlay.querySelector(FOCUSABLE);
       if (focusable) focusable.focus();
@@ -997,6 +999,10 @@
     const overlay = document.getElementById(id);
     if (!overlay) return;
     overlay.classList.remove("active");
+    if (id === "navDrawer") {
+      const toggle = $(".menu-toggle");
+      if (toggle) toggle.setAttribute("aria-expanded", "false");
+    }
     if (!document.querySelector(".overlay.active")) {
       document.body.classList.remove("modal-open");
     }
@@ -1017,7 +1023,8 @@
       favorites: "favoritesModal",
       checkout: "checkoutModal",
       ticket: "ticketModal",
-      lightbox: "lightboxModal"
+      lightbox: "lightboxModal",
+      nav: "navDrawer"
     };
     if (map[name]) closeOverlay(map[name]);
   }
@@ -1069,18 +1076,18 @@
   }
 
   function toggleNav() {
-    const header = $("#siteHeader");
-    if (!header) return;
-    const open = header.classList.toggle("nav-open");
-    document.body.classList.toggle("nav-open", open);
-    const toggle = $(".menu-toggle");
-    if (toggle) toggle.setAttribute("aria-expanded", String(open));
+    const drawer = $("#navDrawer");
+    if (drawer && drawer.classList.contains("active")) {
+      closeOverlay("navDrawer");
+    } else {
+      openOverlay("navDrawer");
+    }
   }
 
   function closeNav() {
+    closeOverlay("navDrawer");
     const header = $("#siteHeader");
-    if (!header) return;
-    header.classList.remove("nav-open");
+    if (header) header.classList.remove("nav-open");
     document.body.classList.remove("nav-open");
     const toggle = $(".menu-toggle");
     if (toggle) toggle.setAttribute("aria-expanded", "false");
@@ -2695,7 +2702,7 @@
 
     const actionElement = event.target.closest("[data-action]");
     if (!actionElement) {
-      if (!event.target.closest(".primary-nav") && !event.target.closest(".menu-toggle")) {
+      if (!event.target.closest(".primary-nav") && !event.target.closest(".menu-toggle") && !event.target.closest(".mobile-nav-drawer")) {
         closeNav();
       }
       if (!event.target.closest(".site-header")) {
@@ -2913,6 +2920,10 @@
 
       case "toggle-nav":
         toggleNav();
+        break;
+
+      case "close-nav":
+        closeNav();
         break;
 
       case "toggle-search":
