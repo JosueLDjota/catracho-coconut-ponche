@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catracho Coconut Ponche — Tienda Culinaria Oficial · UNAH Comayagua</title>
+  <meta name="description" content="Tienda gastronómica oficial de Catracho Coconut Ponche. Reinvención artesanal del ponche caliente hondureño con coco tropical y cacao Atucún de Comayagua. Proyecto académico UNAH.">
+  <meta name="theme-color" content="#0B0706">
+
+  <link rel="icon" type="image/png" href="assets/img/logo.png">
+
+  <!-- Iconos FontAwesome (vendidos localmente para funcionar sin conexión) -->
+  <link rel="stylesheet" href="assets/vendor/fontawesome/css/all.min.css">
+
+  <!-- Hoja de estilos principal -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <a class="skip-link" href="#mainContent">Saltar al contenido principal</a>
+
+  <!-- Fondo ambiental animado panorámico -->
+  <div class="ambient" aria-hidden="true">
+    <span class="ambient-blob blob-1"></span>
+    <span class="ambient-blob blob-2"></span>
+    <span class="ambient-blob blob-3"></span>
+    <span class="ambient-blob blob-4"></span>
+    <span class="ambient-blob blob-5"></span>
+    <div class="ambient-particles">
+      <span class="p-dot p1"></span>
+      <span class="p-dot p2"></span>
+      <span class="p-dot p3"></span>
+      <span class="p-dot p4"></span>
+      <span class="p-dot p5"></span>
+      <span class="p-dot p6"></span>
+      <span class="p-dot p7"></span>
+      <span class="p-dot p8"></span>
+    </div>
+    <span class="ambient-grid"></span>
+  </div>
+
+  <!-- Global Apple-style Loading Overlay -->
+  <div class="global-loader" id="globalLoader" aria-hidden="true" role="status">
+    <div class="loader-card">
+      <div class="apple-spinner" aria-hidden="true"></div>
+      <p class="loader-message" id="loaderMessage">Processing...</p>
+    </div>
+  </div>
+
+
+  <!-- ======================================================================
+       ENCABEZADO SUPERIOR (navegación horizontal, sin sidebar lateral)
+       ====================================================================== -->
+  <header class="site-header" id="siteHeader">
+    <div class="header-shell">
+
+      <a class="brand" href="#menu" data-action="switch-view" data-view="menu" aria-label="Catracho Coconut Ponche — Inicio">
+        <img src="assets/img/logo-160.webp" alt="Logotipo Catracho Ponche" class="brand-logo" width="46" height="46">
+        <span class="brand-copy">
+          <strong>Catracho Ponche</strong>
+          <span data-i18n="brand.tagline">Warmth in a Cup</span>
+        </span>
+      </a>
+
+      <nav class="primary-nav" id="primaryNav" aria-label="Navegación principal">
+        <button class="nav-link active" type="button" data-action="switch-view" data-view="menu" data-nav-view="menu">
+          <i class="fa-solid fa-mug-hot" aria-hidden="true"></i><span data-i18n="nav.menu">Menú</span>
+        </button>
+        <button class="nav-link" type="button" data-action="switch-view" data-view="heritage" data-nav-view="heritage">
+          <i class="fa-solid fa-award" aria-hidden="true"></i><span data-i18n="nav.heritage">Historia</span>
+        </button>
+        <button class="nav-link" type="button" data-action="switch-view" data-view="craft" data-nav-view="craft">
+          <i class="fa-solid fa-flask-vial" aria-hidden="true"></i><span data-i18n="nav.craft">Proceso</span>
+        </button>
+        <button class="nav-link" type="button" data-action="switch-view" data-view="calculator" data-nav-view="calculator">
+          <i class="fa-solid fa-calculator" aria-hidden="true"></i><span data-i18n="nav.catering">Eventos</span>
+        </button>
+        <button class="nav-link" type="button" data-action="switch-view" data-view="team" data-nav-view="team">
+          <i class="fa-solid fa-users" aria-hidden="true"></i><span data-i18n="nav.team">Equipo</span>
+        </button>
+        <button class="nav-link nav-link-account" type="button" data-action="open-account" data-nav-view="account">
+          <i class="fa-solid fa-user" aria-hidden="true"></i><span data-i18n="nav.account">Mi cuenta</span>
+        </button>
+      </nav>
+
+      <div class="header-actions">
+        <form class="header-search" id="headerSearch" role="search" autocomplete="off">
+          <i class="fa-solid fa-magnifying-glass search-glyph" aria-hidden="true"></i>
+          <input type="search" id="searchInput" data-i18n-placeholder="catalog.searchPlaceholder" placeholder="Buscar en el menú…" aria-label="Buscar productos" data-i18n-aria="nav.search">
+          <button type="button" class="search-clear" data-action="clear-search" aria-label="Limpiar búsqueda" data-i18n-aria="catalog.searchClear">
+            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+          </button>
+        </form>
+
+        <button class="icon-btn search-toggle" type="button" data-action="toggle-search" aria-label="Buscar productos" data-i18n-aria="nav.search">
+          <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+        </button>
+
+        <button class="icon-btn" type="button" data-action="open-favorites" aria-label="Favoritos" data-i18n-aria="nav.favorites">
+          <i class="fa-solid fa-heart" aria-hidden="true"></i>
+          <span class="icon-badge" id="favoritesCount" hidden>0</span>
+        </button>
+
+        <button class="icon-btn cart-trigger" type="button" data-action="open-cart" aria-label="Mi pedido" data-i18n-aria="nav.cart">
+          <i class="fa-solid fa-bag-shopping" aria-hidden="true"></i>
+          <span class="icon-badge" id="cartCount" hidden>0</span>
+        </button>
+
+        <button class="account-btn" type="button" data-action="open-account" id="accountBtn">
+          <span class="account-avatar" id="accountAvatar" aria-hidden="true"><i class="fa-solid fa-user"></i></span>
+          <span class="account-label" id="accountLabel" data-i18n="nav.login">Ingresar</span>
+        </button>
+
+        <button class="icon-btn menu-toggle" type="button" data-action="toggle-nav" aria-label="Abrir menú" aria-expanded="false" aria-controls="primaryNav">
+          <i class="fa-solid fa-bars" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ======================================================================
+       CONTENIDO PRINCIPAL
+       ====================================================================== -->
+  <main id="mainContent">
+
+    <!-- ====================================================================
+         VISTA 1: MENÚ Y TIENDA
+         ==================================================================== -->
+    <section class="view-panel active" id="view-menu" aria-labelledby="menuTitle">
+      <div class="container">
+
+        <!-- Hero editorial -->
+        <div class="hero" data-reveal>
+          <div class="hero-copy">
+            <h1 class="hero-title" id="menuTitle" data-i18n="hero.h1">El ponche caliente que abraza.</h1>
+            <p class="hero-lead" data-i18n="hero.lead">Reinvención artesanal del ponche hondureño: coco dulce natural, panela de trapiche, canela en vara y cacao 70% Atucún, servido a 85 °C en el clásico pocillo de aluminio.</p>
+            <div class="hero-actions">
+              <button class="btn btn-primary btn-lg" type="button" data-action="scroll-catalog">
+                <i class="fa-solid fa-bag-shopping" aria-hidden="true"></i><span data-i18n="hero.ctaOrder">Ver menú y ordenar</span>
+              </button>
+              <button class="btn btn-secondary btn-lg" type="button" data-action="switch-view" data-view="heritage">
+                <i class="fa-solid fa-mug-saucer" aria-hidden="true"></i><span data-i18n="hero.ctaStory">Conocer el pocillo</span>
+              </button>
+            </div>
+            <div class="hero-proof">
+              <div class="stars" aria-hidden="true">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              </div>
+              <span data-i18n="hero.rating">4.9 de 5 · 128 reseñas</span>
+            </div>
+          </div>
+
+          <div class="hero-visual">
+            <div class="hero-halo" aria-hidden="true"></div>
+            <img src="assets/img/ponche-cup-jar.webp" alt="Pocillo de ponche caliente con coco y canela" class="hero-image" width="840" height="1120" fetchpriority="high">
+            <div class="floating-card floating-top">
+              <span class="floating-icon"><i class="fa-solid fa-fire-flame-curved" aria-hidden="true"></i></span>
+              <span><strong data-i18n="hero.badge">Servido a 85 °C</strong><small data-i18n="hero.badgeSub">Recién preparado</small></span>
+            </div>
+            <div class="floating-card floating-bottom">
+              <span class="floating-icon gold"><i class="fa-solid fa-leaf" aria-hidden="true"></i></span>
+              <span><strong>0% plástico</strong><small data-i18n="trust.cupTitle">Pocillo reutilizable</small></span>
+            </div>
+          </div>
+
+          <div class="hero-stats">
+            <div><strong data-i18n="hero.stat1">Atucún 70%</strong><span data-i18n="hero.stat1Label">Comayagua Cacao</span></div>
+            <div><strong data-i18n="hero.stat2">Artisanal</strong><span data-i18n="hero.stat2Label">Small-batch recipe</span></div>
+            <div><strong data-i18n="hero.stat3">Thermal Cup</strong><span data-i18n="hero.stat3Label">Traditional aluminum</span></div>
+          </div>
+        </div>
+
+        <!-- Franja de confianza -->
+        <div class="trust-strip" data-reveal>
+          <div class="trust-item">
+            <span class="trust-icon"><i class="fa-solid fa-fire-burner" aria-hidden="true"></i></span>
+            <div><strong data-i18n="trust.freshTitle">Hecho al momento</strong><span data-i18n="trust.freshDesc">Cada pedido se prepara al instante en nuestra cocina.</span></div>
+          </div>
+          <div class="trust-item">
+            <span class="trust-icon"><i class="fa-solid fa-motorcycle" aria-hidden="true"></i></span>
+            <div><strong data-i18n="trust.deliveryTitle">Entrega en Comayagua</strong><span data-i18n="trust.deliveryDesc">Campus UNAH, centro histórico y domicilio.</span></div>
+          </div>
+          <div class="trust-item">
+            <span class="trust-icon"><i class="fa-solid fa-recycle" aria-hidden="true"></i></span>
+            <div><strong data-i18n="trust.cupTitle">Pocillo reutilizable</strong><span data-i18n="trust.cupDesc">Aluminio tradicional, seguro y libre de plástico.</span></div>
+          </div>
+        </div>
+
+        <!-- Catálogo -->
+        <section class="catalog" id="menu-catalog" aria-labelledby="catalogTitle">
+          <div class="section-head" data-reveal>
+            <span class="eyebrow" data-i18n="catalog.eyebrow">Nuestras recetas</span>
+            <h2 class="section-title" id="catalogTitle" data-i18n="catalog.title">Menú de la casa</h2>
+            <p class="section-sub" data-i18n="catalog.subtitle">Bebidas calientes recién preparadas y complementos crujientes para disfrutar en Comayagua.</p>
+          </div>
+
+          <div class="catalog-toolbar" data-reveal>
+            <div class="category-pills" role="group" aria-label="Filtrar por categoría">
+              <button class="cat-pill active" type="button" data-action="filter" data-cat="all" data-i18n="catalog.all">Todo el menú</button>
+              <button class="cat-pill" type="button" data-action="filter" data-cat="cups" data-i18n="catalog.cups">Pocillos individuales</button>
+              <button class="cat-pill" type="button" data-action="filter" data-cat="combos" data-i18n="catalog.combos">Packs para eventos</button>
+              <button class="cat-pill" type="button" data-action="filter" data-cat="snacks" data-i18n="catalog.snacks">Acompañamientos</button>
+            </div>
+            <div class="toolbar-right">
+              <span class="results-count" id="resultsCount" aria-live="polite"></span>
+              <label class="sort-control">
+                <span class="sr-only" data-i18n="catalog.sortLabel">Ordenar por</span>
+                <i class="fa-solid fa-arrow-down-wide-short" aria-hidden="true"></i>
+                <select id="sortSelect" aria-label="Ordenar productos">
+                  <option value="featured" data-i18n="catalog.sortFeatured">Destacados</option>
+                  <option value="price-asc" data-i18n="catalog.sortPriceAsc">Precio: menor a mayor</option>
+                  <option value="price-desc" data-i18n="catalog.sortPriceDesc">Precio: mayor a menor</option>
+                  <option value="name" data-i18n="catalog.sortName">Nombre A–Z</option>
+                </select>
+              </label>
+            </div>
+          </div>
+
+          <div class="product-grid" id="productGrid"></div>
+
+          <div class="empty-state" id="catalogEmpty" hidden>
+            <span class="empty-icon"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></span>
+            <h3 data-i18n="catalog.emptyTitle">No encontramos ese ponche</h3>
+            <p data-i18n="catalog.emptyDesc">Prueba con otra búsqueda o revisa todas nuestras recetas.</p>
+            <button class="btn btn-secondary" type="button" data-action="clear-filters">
+              <i class="fa-solid fa-rotate-left" aria-hidden="true"></i><span data-i18n="catalog.clear">Limpiar filtros</span>
+            </button>
+          </div>
+        </section>
+
+        <!-- Propuesta de valor -->
+        <div class="value-grid" data-reveal>
+          <article class="value-card">
+            <span class="value-number">01</span>
+            <h3>Ingredientes de origen</h3>
+            <p>Coco natural, panela de trapiche, canela en corteza y cacao Atucún de Comayagua.</p>
+          </article>
+          <article class="value-card">
+            <span class="value-number">02</span>
+            <h3>Servicio cuidadoso</h3>
+            <p>Preparado al momento y entregado caliente en el pocillo térmico tradicional.</p>
+          </article>
+          <article class="value-card">
+            <span class="value-number">03</span>
+            <h3>Compra local</h3>
+            <p>Tu pedido, tus favoritos y tu historial se guardan únicamente en este dispositivo.</p>
+          </article>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         VISTA 2: HISTORIA Y POCILLO
+         ==================================================================== -->
+    <section class="view-panel" id="view-heritage" aria-labelledby="heritageTitle" hidden>
+      <div class="container">
+        <div class="page-head" data-reveal>
+          <span class="eyebrow" data-i18n="heritage.eyebrow">Identidad y patrimonio</span>
+          <h1 class="page-title" id="heritageTitle" data-i18n="heritage.title">El pocillo de aluminio tradicional</h1>
+          <p class="section-sub" data-i18n="heritage.subtitle">Un homenaje al calor del hogar hondureño y a la nobleza de nuestros ingredientes.</p>
+        </div>
+
+        <div class="feature-grid">
+          <article class="feature-card" data-reveal>
+            <span class="feature-icon"><i class="fa-solid fa-mug-hot" aria-hidden="true"></i></span>
+            <h2 data-i18n="heritage.box1Title">Eficiencia térmica confortante</h2>
+            <p data-i18n="heritage.box1Desc">El pocillo de aluminio transfiere la calidez del ponche directamente a las manos, generando esa sensación nostálgica de abrazo y afecto familiar mientras preserva el bouquet aromático de la canela.</p>
+          </article>
+          <article class="feature-card" data-reveal style="--i:1">
+            <span class="feature-icon"><i class="fa-solid fa-award" aria-hidden="true"></i></span>
+            <h2 data-i18n="heritage.box2Title">Cacao 70% Atucún de Comayagua</h2>
+            <p data-i18n="heritage.box2Desc">Promovemos la agroindustria local de Comayagua incorporando chocolate artesanal bean-to-bar de la más alta pureza, creando un maridaje inigualable con las notas dulces del coco.</p>
+          </article>
+          <article class="feature-card" data-reveal style="--i:2">
+            <span class="feature-icon"><i class="fa-solid fa-leaf" aria-hidden="true"></i></span>
+            <h2 data-i18n="heritage.box3Title">Cero plásticos de un solo uso</h2>
+            <p data-i18n="heritage.box3Desc">Envase metálico 100% reutilizable, seguro y duradero. Una propuesta comprometida con la sostenibilidad ambiental y el orgullo por nuestras raíces culturales.</p>
+          </article>
+        </div>
+
+        <blockquote class="quote-card" data-reveal>
+          <i class="fa-solid fa-quote-left" aria-hidden="true"></i>
+          <p data-i18n="heritage.quote">“El ponche no es solo una bebida: es la memoria cálida de una casa hondureña.”</p>
+          <cite data-i18n="heritage.quoteAuthor">Equipo Catracho Ponche</cite>
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         VISTA 3: PROCESO CULINARIO
+         ==================================================================== -->
+    <section class="view-panel" id="view-craft" aria-labelledby="craftTitle" hidden>
+      <div class="container">
+        <div class="page-head" data-reveal>
+          <span class="eyebrow" data-i18n="craft.eyebrow">Bitácora gastronómica real</span>
+          <h1 class="page-title" id="craftTitle" data-i18n="craft.title">Proceso de elaboración en cocina</h1>
+          <p class="section-sub" data-i18n="craft.subtitle">Registro fotográfico real de las sesiones prácticas de formulación desarrolladas por las estudiantes de UNAH en Comayagua.</p>
+          <p class="hint"><i class="fa-solid fa-expand" aria-hidden="true"></i> <span data-i18n="craft.hint">Haz clic en una fotografía para ampliarla.</span></p>
+        </div>
+
+        <div class="gallery-grid">
+          <button class="gallery-card" type="button" data-action="open-lightbox" data-src="assets/img/real-prep-panela.jpg" data-title-key="craft.phase1Title" data-desc-key="craft.phase1Desc" data-reveal>
+            <img src="assets/img/real-prep-panela.jpg" alt="Molienda de panela" loading="lazy" width="1200" height="1600">
+            <span class="gallery-badge">01</span>
+            <span class="gallery-caption"><strong data-i18n="craft.phase1Title">Molienda de panela</strong><small data-i18n="craft.phase1Desc">Corte artesanal de dulce de caña para lograr una disolución perfecta.</small></span>
+          </button>
+          <button class="gallery-card" type="button" data-action="open-lightbox" data-src="assets/img/real-prep-milk-cinnamon.jpg" data-title-key="craft.phase2Title" data-desc-key="craft.phase2Desc" data-reveal style="--i:1">
+            <img src="assets/img/real-prep-milk-cinnamon.jpg" alt="Infusión de canela en leche" loading="lazy" width="1200" height="1600">
+            <span class="gallery-badge">02</span>
+            <span class="gallery-caption"><strong data-i18n="craft.phase2Title">Infusión de canela en vara</strong><small data-i18n="craft.phase2Desc">Hervor a 78 °C para extraer los aceites esenciales aromáticos.</small></span>
+          </button>
+          <button class="gallery-card" type="button" data-action="open-lightbox" data-src="assets/img/real-prep-mixer-eggs.jpg" data-title-key="craft.phase3Title" data-desc-key="craft.phase3Desc" data-reveal style="--i:2">
+            <img src="assets/img/real-prep-mixer-eggs.jpg" alt="Emulsión de yemas" loading="lazy" width="1200" height="1600">
+            <span class="gallery-badge">03</span>
+            <span class="gallery-caption"><strong data-i18n="craft.phase3Title">Emulsión de yemas</strong><small data-i18n="craft.phase3Desc">Batido uniforme para lograr una base cremosa y aterciopelada.</small></span>
+          </button>
+          <button class="gallery-card" type="button" data-action="open-lightbox" data-src="assets/img/real-prep-coconut-flakes.jpg" data-title-key="craft.phase4Title" data-desc-key="craft.phase4Desc" data-reveal style="--i:3">
+            <img src="assets/img/real-prep-coconut-flakes.jpg" alt="Coco rallado tostado" loading="lazy" width="960" height="1280">
+            <span class="gallery-badge">04</span>
+            <span class="gallery-caption"><strong data-i18n="craft.phase4Title">Hidratación de coco rallado</strong><small data-i18n="craft.phase4Desc">Virutas dulces que otorgan cuerpo y perfil tropical.</small></span>
+          </button>
+          <button class="gallery-card" type="button" data-action="open-lightbox" data-src="assets/img/real-oven-dehydrated-apples.jpg" data-title-key="craft.phase5Title" data-desc-key="craft.phase5Desc" data-reveal>
+            <img src="assets/img/real-oven-dehydrated-apples.jpg" alt="Manzanas deshidratadas en horno" loading="lazy" width="1600" height="1200">
+            <span class="gallery-badge">05</span>
+            <span class="gallery-caption"><strong data-i18n="craft.phase5Title">Manzanas deshidratadas</strong><small data-i18n="craft.phase5Desc">Chips crujientes horneados lentamente con canela.</small></span>
+          </button>
+          <button class="gallery-card" type="button" data-action="open-lightbox" data-src="assets/img/real-prep-stove-pot.jpg" data-title-key="craft.phase6Title" data-desc-key="craft.phase6Desc" data-reveal style="--i:1">
+            <img src="assets/img/real-prep-stove-pot.jpg" alt="Cocción lenta en olla" loading="lazy" width="1200" height="1600">
+            <span class="gallery-badge">06</span>
+            <span class="gallery-caption"><strong data-i18n="craft.phase6Title">Cocción lenta en olla</strong><small data-i18n="craft.phase6Desc">Supervisión térmica exacta para amalgamar aromas.</small></span>
+          </button>
+          <button class="gallery-card" type="button" data-action="open-lightbox" data-src="assets/img/real-team-photo-1.jpg" data-title-key="craft.phase7Title" data-desc-key="craft.phase7Desc" data-reveal style="--i:2">
+            <img src="assets/img/real-team-photo-1.jpg" alt="Equipo de estudiantes en cocina" loading="lazy" width="1200" height="1600">
+            <span class="gallery-badge">07</span>
+            <span class="gallery-caption"><strong data-i18n="craft.phase7Title">Trabajo en equipo</strong><small data-i18n="craft.phase7Desc">Estudiantes investigadoras en el laboratorio de cocina.</small></span>
+          </button>
+          <button class="gallery-card" type="button" data-action="open-lightbox" data-src="assets/img/real-product-cup-close.jpg" data-title-key="craft.phase8Title" data-desc-key="craft.phase8Desc" data-reveal style="--i:3">
+            <img src="assets/img/real-product-cup-close.jpg" alt="Ponche servido en pocillo" loading="lazy" width="1200" height="1600">
+            <span class="gallery-badge">08</span>
+            <span class="gallery-caption"><strong data-i18n="craft.phase8Title">Servicio en pocillo</strong><small data-i18n="craft.phase8Desc">Presentación final servida en pocillo tradicional de aluminio.</small></span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         VISTA 4: CALCULADORA DE EVENTOS
+         ==================================================================== -->
+    <section class="view-panel" id="view-calculator" aria-labelledby="calcTitle" hidden>
+      <div class="container">
+        <div class="page-head" data-reveal>
+          <span class="eyebrow" data-i18n="calc.eyebrow">Celebraciones y catering</span>
+          <h1 class="page-title" id="calcTitle" data-i18n="calc.title">Ponche para tus eventos</h1>
+          <p class="section-sub" data-i18n="calc.subtitle">¿Tienes una reunión familiar, cumpleaños o evento en Comayagua? Simula tus porciones requeridas y agrega el lote directo a tu pedido.</p>
+        </div>
+
+        <div class="calc-panel" data-reveal>
+          <div class="calc-slider-row">
+            <label for="eventInput" class="calc-label" data-i18n="calc.servings">Número de personas o porciones</label>
+            <div class="calc-inputs">
+              <input type="range" id="eventSlider" min="1" max="500" value="24" aria-label="Porciones">
+              <input type="number" id="eventInput" min="1" max="500" value="24" inputmode="numeric" aria-label="Porciones">
+            </div>
+          </div>
+
+          <div class="ingredient-grid">
+            <div class="ingredient-card"><span data-i18n="calc.milk">Leche entera</span><strong id="evMilk">6.0 L</strong></div>
+            <div class="ingredient-card"><span data-i18n="calc.coconut">Coco dulce</span><strong id="evCoconut">840 g</strong></div>
+            <div class="ingredient-card"><span data-i18n="calc.panela">Panela pura</span><strong id="evPanela">720 g</strong></div>
+            <div class="ingredient-card"><span data-i18n="calc.cinnamon">Canela en vara</span><strong id="evCinnamon">10 varas</strong></div>
+            <div class="ingredient-card"><span data-i18n="calc.apples">Manzanas horneadas</span><strong id="evApples">24 rodajas</strong></div>
+            <div class="ingredient-card"><span data-i18n="calc.cacao">Cacao Atucún</span><strong id="evCacao">360 g</strong></div>
+          </div>
+
+          <div class="calc-summary">
+            <div class="calc-estimate">
+              <span data-i18n="calc.estimate">Estimado del lote</span>
+              <div class="calc-estimate-row"><small data-i18n="calc.packs">Packs de 1.5 L</small><strong id="evPacks">4</strong></div>
+              <div class="calc-estimate-row"><small data-i18n="calc.units">Pocillos individuales</small><strong id="evUnits">0</strong></div>
+              <div class="calc-estimate-row total"><small data-i18n="calc.total">Total estimado</small><strong id="evTotal">L 1,160.00</strong></div>
+            </div>
+            <div class="calc-action">
+              <button class="btn btn-primary btn-lg" type="button" data-action="add-batch">
+                <i class="fa-solid fa-cart-plus" aria-hidden="true"></i><span data-i18n="calc.addBatch">Agregar este lote a mi pedido</span>
+              </button>
+              <p class="calc-note" data-i18n="calc.note">Cálculo orientativo. El equipo confirma disponibilidad e insumos al recibir el pedido.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         VISTA 5: EQUIPO UNAH
+         ==================================================================== -->
+    <section class="view-panel" id="view-team" aria-labelledby="teamTitle" hidden>
+      <div class="container">
+        <div class="page-head" data-reveal>
+          <span class="eyebrow" data-i18n="team.eyebrow">Liderazgo académico</span>
+          <h1 class="page-title" id="teamTitle" data-i18n="team.title">Equipo de investigación y asesoría</h1>
+          <p class="section-sub" data-i18n="team.subtitle">Proyecto desarrollado para la cátedra de Inglés Técnico en la Universidad Nacional Autónoma de Honduras (UNAH), Comayagua.</p>
+        </div>
+
+        <article class="advisor-card" data-reveal>
+          <span class="advisor-icon"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i></span>
+          <div>
+            <span class="tag" data-i18n="team.advisorRole">Catedrática guía y asesora docente</span>
+            <h2 data-i18n="team.advisorName">Licda. María Elena Martínez</h2>
+            <p data-i18n="team.advisorDept">Departamento de Inglés Técnico · Universidad Nacional Autónoma de Honduras</p>
+            <span class="advisor-date" data-i18n="team.advisorDate">Presentado el 21 de octubre de 2026 · Comayagua, Honduras</span>
+          </div>
+        </article>
+
+        <h2 class="subsection-title" data-i18n="team.studentsTitle">Estudiantes creadoras del proyecto</h2>
+        <div class="students-grid">
+          <article class="student-card" data-reveal><span class="student-avatar"><i class="fa-solid fa-user" aria-hidden="true"></i></span><h3>Rosy Beatriz Escobar Ventura</h3><p data-i18n="team.studentRole">Estudiante desarrolladora</p></article>
+          <article class="student-card" data-reveal style="--i:1"><span class="student-avatar"><i class="fa-solid fa-user" aria-hidden="true"></i></span><h3>Lauren Gabriela Escobar Rios</h3><p data-i18n="team.studentRole">Estudiante desarrolladora</p></article>
+          <article class="student-card" data-reveal style="--i:2"><span class="student-avatar"><i class="fa-solid fa-user" aria-hidden="true"></i></span><h3>Andrea Mabel Regalado Bardales</h3><p data-i18n="team.studentRole">Estudiante desarrolladora</p></article>
+          <article class="student-card" data-reveal style="--i:3"><span class="student-avatar"><i class="fa-solid fa-user" aria-hidden="true"></i></span><h3>Isis Hanay Euceda Hernández</h3><p data-i18n="team.studentRole">Estudiante desarrolladora</p></article>
+          <article class="student-card" data-reveal style="--i:4"><span class="student-avatar"><i class="fa-solid fa-user" aria-hidden="true"></i></span><h3>Karina Yaricell Castillo Chavarría</h3><p data-i18n="team.studentRole">Estudiante desarrolladora</p></article>
+        </div>
+
+        <div class="mission-grid">
+          <article class="feature-card" data-reveal>
+            <h2 data-i18n="team.missionTitle">Nuestra misión</h2>
+            <p data-i18n="team.missionText">Elaborar y ofrecer una versión modernizada del tradicional ponche caliente hondureño, utilizando ingredientes innovadores de primera calidad que preserven su esencia cultural mientras brindan una experiencia de bebida auténtica y de primer nivel.</p>
+          </article>
+          <article class="feature-card" data-reveal style="--i:1">
+            <h2 data-i18n="team.visionTitle">Nuestra visión</h2>
+            <p data-i18n="team.visionText">Convertirnos en una marca referente en el mercado de bebidas convencionales y funcionales, revolucionando el ponche tradicional, resaltando el orgullo cultural a nivel local e introduciendo sabores catrachos icónicos en mercados internacionales para el año 2031.</p>
+          </article>
+        </div>
+
+        <div class="instagram-card" data-reveal>
+          <div>
+            <span class="tag" data-i18n="team.instagramTag">Canal oficial</span>
+            <h2 data-i18n="team.instagramTitle">Síguenos en @CATRACHO_PONCHE</h2>
+            <p data-i18n="team.instagramDesc">Canal oficial para enterarte de degustaciones en campus y eventos especiales en Comayagua.</p>
+            <a href="https://instagram.com/CATRACHO_PONCHE" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+              <i class="fa-brands fa-instagram" aria-hidden="true"></i><span data-i18n="team.instagramBtn">Ver Instagram</span>
+            </a>
+          </div>
+          <div class="qr-frame">
+            <img src="assets/img/instagram-qr.jpg" alt="Código QR del Instagram oficial" loading="lazy" width="606" height="1024">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         VISTA 6: MI CUENTA (renderizada por main.js)
+         ==================================================================== -->
+    <section class="view-panel" id="view-account" aria-labelledby="accountTitle" hidden>
+      <div class="container">
+        <div class="page-head" data-reveal>
+          <span class="eyebrow" data-i18n="account.eyebrow">Área personal</span>
+          <h1 class="page-title" id="accountTitle" data-i18n="account.title">Mi cuenta</h1>
+          <p class="section-sub" data-i18n="account.subtitle">Consulta tus pedidos, favoritos y datos guardados en este dispositivo.</p>
+        </div>
+        <div id="accountContent"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ======================================================================
+       PIE DE PÁGINA
+       ====================================================================== -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="#menu" data-action="switch-view" data-view="menu">
+          <img src="assets/img/logo-160.webp" alt="Logotipo Catracho Ponche" class="brand-logo" width="46" height="46" loading="lazy">
+          <span class="brand-copy"><strong>Catracho Ponche</strong><span data-i18n="brand.tagline">Warmth in a Cup</span></span>
+        </a>
+        <p data-i18n="footer.tagline">Ponche artesanal hondureño, preparado con ingredientes locales y servido con orgullo catracho.</p>
+        <div class="footer-social">
+          <a href="https://instagram.com/CATRACHO_PONCHE" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h3 data-i18n="footer.shop">Tienda</h3>
+        <button type="button" data-action="switch-view" data-view="menu" data-i18n="footer.menu">Menú y pedidos</button>
+        <button type="button" data-action="open-favorites" data-i18n="footer.favorites">Mis favoritos</button>
+        <button type="button" data-action="open-account" data-i18n="footer.account">Mi cuenta</button>
+      </div>
+
+      <div class="footer-col">
+        <h3 data-i18n="footer.info">Proyecto</h3>
+        <button type="button" data-action="switch-view" data-view="heritage" data-i18n="footer.heritage">Historia y pocillo</button>
+        <button type="button" data-action="switch-view" data-view="craft" data-i18n="footer.craft">Proceso culinario</button>
+        <button type="button" data-action="switch-view" data-view="team" data-i18n="footer.team">Equipo UNAH</button>
+      </div>
+
+      <div class="footer-col">
+        <h3 data-i18n="footer.contact">Contacto</h3>
+        <p><i class="fa-solid fa-location-dot" aria-hidden="true"></i> <span data-i18n="footer.location">Comayagua, Honduras</span></p>
+        <p><i class="fa-brands fa-instagram" aria-hidden="true"></i> <span data-i18n="footer.instagram">@CATRACHO_PONCHE</span></p>
+        <p><i class="fa-regular fa-clock" aria-hidden="true"></i> <span data-i18n="footer.hoursValue">Lunes a sábado · 9:00 a. m. – 8:00 p. m.</span></p>
+        <p class="footer-payments"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> <span data-i18n="footer.payments">Cash on delivery · Bank Transfer · Card</span></p>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>© <span id="year">2026</span> Catracho Coconut Ponche · <span data-i18n="footer.rights">Todos los derechos reservados.</span></p>
+      <p data-i18n="footer.academicDesc">Desarrollado para la cátedra de Inglés Técnico, UNAH Comayagua, 2026.</p>
+      <p class="footer-local"><i class="fa-solid fa-lock" aria-hidden="true"></i> <span data-i18n="footer.local">Datos guardados localmente en tu navegador.</span></p>
+    </div>
+  </footer>
+
+  <!-- ======================================================================
+       CARRITO DESLIZABLE
+       ====================================================================== -->
+  <div class="overlay drawer-overlay" id="cartDrawer" data-close="cart">
+    <aside class="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
+      <header class="drawer-head">
+        <div>
+          <h2 id="cartTitle"><i class="fa-solid fa-bag-shopping" aria-hidden="true"></i> <span data-i18n="cart.title">Tu pedido</span></h2>
+          <span class="drawer-count" id="cartItemCount"></span>
+        </div>
+        <button class="icon-btn ghost" type="button" data-action="close-cart" aria-label="Cerrar carrito" data-i18n-aria="cart.close">
+          <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+        </button>
+      </header>
+
+      <div class="cart-items" id="cartItems"></div>
+
+      <div class="cart-footer" id="cartFooter" hidden>
+        <div class="field-group">
+          <label class="field-label" for="cartDelivery" data-i18n="cart.deliveryLabel">Lugar de entrega</label>
+          <select id="cartDelivery" class="input">
+            <option value="unah" data-i18n="delivery.unah">Campus UNAH Comayagua</option>
+            <option value="center" data-i18n="delivery.center">Parque Central / Centro</option>
+            <option value="express" data-i18n="delivery.express">Bulevar / Domicilio</option>
+          </select>
+        </div>
+
+        <div class="coupon-row">
+          <label class="sr-only" for="couponInput" data-i18n="cart.couponLabel">Cupón de descuento</label>
+          <input type="text" id="couponInput" class="input" data-i18n-placeholder="cart.couponPlaceholder" placeholder="Cupón (ej. UNAH2026)" autocomplete="off">
+          <button class="btn btn-secondary" type="button" data-action="apply-coupon" data-i18n="cart.apply">Aplicar</button>
+        </div>
+        <div class="coupon-feedback" id="couponFeedback" hidden>
+          <span id="couponFeedbackText"></span>
+          <button type="button" data-action="remove-coupon" aria-label="Quitar cupón" data-i18n-aria="cart.couponRemove"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+        </div>
+
+        <div class="summary-lines">
+          <div class="summary-line"><span data-i18n="cart.subtotal">Subtotal</span><strong id="cartSubtotal">L 0.00</strong></div>
+          <div class="summary-line discount" id="cartDiscountLine" hidden><span data-i18n="cart.discount">Descuento</span><strong id="cartDiscount">− L 0.00</strong></div>
+          <div class="summary-line"><span data-i18n="cart.delivery">Entrega</span><strong id="cartDeliveryFee">Gratis</strong></div>
+          <div class="summary-line total"><span data-i18n="cart.total">Total a pagar</span><strong id="cartTotal">L 0.00</strong></div>
+        </div>
+
+        <button class="btn btn-primary btn-block btn-lg" type="button" data-action="checkout" id="cartCheckout">
+          <i class="fa-solid fa-lock" aria-hidden="true"></i><span data-i18n="cart.checkout">Finalizar compra</span>
+        </button>
+        <p class="cart-note" id="cartLoginNote" data-i18n="cart.loginNote">Inicia sesión para completar tu compra. Tu pedido se guarda en este dispositivo.</p>
+        <p class="cart-secure"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> <span data-i18n="cart.secure">Compra local y segura · Tus datos se guardan solo en este dispositivo</span></p>
+      </div>
+    </aside>
+  </div>
+
+  <!-- ======================================================================
+       MODAL DE AUTENTICACIÓN
+       ====================================================================== -->
+  <div class="overlay modal-overlay" id="authModal" data-close="auth">
+    <div class="modal auth-modal" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+      <header class="modal-head">
+        <div>
+          <h2 id="authTitle" data-i18n="auth.loginTitle">Bienvenido de nuevo</h2>
+          <p id="authSub" data-i18n="auth.loginSub">Inicia sesión para completar tu compra y ver tus pedidos.</p>
+        </div>
+        <button class="icon-btn ghost" type="button" data-action="close-auth" aria-label="Cerrar" data-i18n-aria="auth.close">
+          <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+        </button>
+      </header>
+
+      <div class="auth-tabs" role="tablist" aria-label="Acceso a la cuenta">
+        <button class="auth-tab active" type="button" role="tab" aria-selected="true" data-action="auth-tab" data-mode="login" data-i18n="auth.loginBtn">Iniciar sesión</button>
+        <button class="auth-tab" type="button" role="tab" aria-selected="false" data-action="auth-tab" data-mode="register" data-i18n="auth.registerBtn">Crear cuenta</button>
+      </div>
+
+      <div class="modal-body auth-body">
+        <!-- Login -->
+        <form id="loginForm" class="auth-form" novalidate>
+          <div class="form-alert" id="loginAlert" role="alert" hidden></div>
+
+          <div class="field-group">
+            <label class="field-label" for="loginEmail" data-i18n="auth.email">Correo electrónico</label>
+            <input class="input" type="email" id="loginEmail" name="email" autocomplete="email" data-i18n-placeholder="auth.emailPh" placeholder="Ej. ana@correo.com" required>
+            <p class="field-error" id="loginEmailError" hidden></p>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label" for="loginPassword" data-i18n="auth.password">Contraseña</label>
+            <div class="password-wrap">
+              <input class="input" type="password" id="loginPassword" name="password" autocomplete="current-password" data-i18n-placeholder="auth.passwordPh" placeholder="Mínimo 8 caracteres" required>
+              <button class="password-toggle" type="button" data-action="toggle-password" data-target="loginPassword" aria-label="Mostrar contraseña" data-i18n-aria="auth.showPassword"><i class="fa-regular fa-eye" aria-hidden="true"></i></button>
+            </div>
+            <p class="field-error" id="loginPasswordError" hidden></p>
+          </div>
+
+          <label class="check-line">
+            <input type="checkbox" id="loginRemember" checked>
+            <span data-i18n="auth.remember">Mantener mi sesión iniciada</span>
+          </label>
+
+          <button class="btn btn-primary btn-block btn-lg" type="submit" id="loginSubmit">
+            <i class="fa-solid fa-arrow-right-to-bracket" aria-hidden="true"></i><span data-i18n="auth.loginBtn">Iniciar sesión</span>
+          </button>
+
+
+          <button class="link-btn center" type="button" data-action="auth-tab" data-mode="register" data-i18n="auth.switchRegister">¿No tienes cuenta? Regístrate</button>
+        </form>
+
+        <!-- Registro -->
+        <form id="registerForm" class="auth-form" novalidate hidden>
+          <div class="form-alert" id="registerAlert" role="alert" hidden></div>
+
+          <div class="field-group">
+            <label class="field-label" for="registerName" data-i18n="auth.name">Nombre completo</label>
+            <input class="input" type="text" id="registerName" name="name" autocomplete="name" data-i18n-placeholder="auth.namePh" placeholder="Ej. Ana Reyes" required>
+            <p class="field-error" id="registerNameError" hidden></p>
+          </div>
+
+          <div class="field-grid">
+            <div class="field-group">
+              <label class="field-label" for="registerEmail" data-i18n="auth.email">Correo electrónico</label>
+              <input class="input" type="email" id="registerEmail" name="email" autocomplete="email" data-i18n-placeholder="auth.emailPh" placeholder="Ej. ana@correo.com" required>
+              <p class="field-error" id="registerEmailError" hidden></p>
+            </div>
+            <div class="field-group">
+              <label class="field-label" for="registerPhone" data-i18n="auth.phone">Teléfono / WhatsApp</label>
+              <input class="input" type="tel" id="registerPhone" name="phone" autocomplete="tel" data-i18n-placeholder="auth.phonePh" placeholder="Ej. 9876-5432" required>
+              <p class="field-error" id="registerPhoneError" hidden></p>
+            </div>
+          </div>
+
+          <div class="field-grid">
+            <div class="field-group">
+              <label class="field-label" for="registerPassword" data-i18n="auth.password">Contraseña</label>
+              <div class="password-wrap">
+                <input class="input" type="password" id="registerPassword" name="password" autocomplete="new-password" data-i18n-placeholder="auth.passwordPh" placeholder="Mínimo 8 caracteres" required>
+                <button class="password-toggle" type="button" data-action="toggle-password" data-target="registerPassword" aria-label="Mostrar contraseña" data-i18n-aria="auth.showPassword"><i class="fa-regular fa-eye" aria-hidden="true"></i></button>
+              </div>
+              <p class="field-error" id="registerPasswordError" hidden></p>
+            </div>
+            <div class="field-group">
+              <label class="field-label" for="registerConfirm" data-i18n="auth.confirm">Confirmar contraseña</label>
+              <div class="password-wrap">
+                <input class="input" type="password" id="registerConfirm" name="confirm" autocomplete="new-password" data-i18n-placeholder="auth.confirmPh" placeholder="Repite tu contraseña" required>
+                <button class="password-toggle" type="button" data-action="toggle-password" data-target="registerConfirm" aria-label="Mostrar contraseña" data-i18n-aria="auth.showPassword"><i class="fa-regular fa-eye" aria-hidden="true"></i></button>
+              </div>
+              <p class="field-error" id="registerConfirmError" hidden></p>
+            </div>
+          </div>
+
+          <label class="check-line">
+            <input type="checkbox" id="registerTerms">
+            <span data-i18n="auth.terms">Acepto los términos y el uso local de mis datos en este dispositivo.</span>
+          </label>
+          <p class="field-error" id="registerTermsError" hidden></p>
+
+          <button class="btn btn-primary btn-block btn-lg" type="submit" id="registerSubmit">
+            <i class="fa-solid fa-user-plus" aria-hidden="true"></i><span data-i18n="auth.registerBtn">Crear cuenta</span>
+          </button>
+
+          <button class="link-btn center" type="button" data-action="auth-tab" data-mode="login" data-i18n="auth.switchLogin">¿Ya tienes cuenta? Inicia sesión</button>
+        </form>
+
+        <p class="auth-local-note"><i class="fa-solid fa-lock" aria-hidden="true"></i> <span data-i18n="auth.localNote">Este proyecto es académico y guarda todo en localStorage. No uses contraseñas reales.</span></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       MODAL DE PRODUCTO / PERSONALIZADOR
+       ====================================================================== -->
+  <div class="overlay modal-overlay" id="productModal" data-close="product">
+    <div class="modal product-modal" role="dialog" aria-modal="true" aria-labelledby="productModalTitle">
+      <div id="productModalBody"></div>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       MODAL DE FAVORITOS
+       ====================================================================== -->
+  <div class="overlay modal-overlay" id="favoritesModal" data-close="favorites">
+    <div class="modal favorites-modal" role="dialog" aria-modal="true" aria-labelledby="favoritesTitle">
+      <header class="modal-head">
+        <div>
+          <h2 id="favoritesTitle" data-i18n="favorites.title">Tus favoritos</h2>
+          <p data-i18n="favorites.subtitle">Los productos que marcaste con el corazón.</p>
+        </div>
+        <button class="icon-btn ghost" type="button" data-action="close-favorites" aria-label="Cerrar favoritos" data-i18n-aria="favorites.close"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+      </header>
+      <div class="modal-body" id="favoritesList"></div>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       MODAL DE CHECKOUT (3 PASOS)
+       ====================================================================== -->
+  <div class="overlay modal-overlay" id="checkoutModal" data-close="checkout">
+    <div class="modal checkout-modal" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle">
+      <header class="modal-head">
+        <h2 id="checkoutTitle" data-i18n="checkout.title">Finalizar compra</h2>
+        <button class="icon-btn ghost" type="button" data-action="close-checkout" aria-label="Cerrar checkout" data-i18n-aria="checkout.close"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+      </header>
+
+      <div class="checkout-layout">
+        <div class="checkout-main">
+          <ol class="checkout-steps" id="checkoutSteps">
+            <li class="active" data-step="1"><span>1</span><em data-i18n="checkout.step1">Datos</em></li>
+            <li data-step="2"><span>2</span><em data-i18n="checkout.step2">Entrega</em></li>
+            <li data-step="3"><span>3</span><em data-i18n="checkout.step3">Pago</em></li>
+          </ol>
+
+          <form id="checkoutForm" novalidate>
+            <!-- Paso 1 -->
+            <section class="checkout-step-panel active" data-checkout-step="1">
+              <h3 data-i18n="checkout.dataTitle">Tus datos de contacto</h3>
+              <p class="step-sub" data-i18n="checkout.dataSub">Usaremos esta información para coordinar la entrega.</p>
+
+              <div class="field-group">
+                <label class="field-label" for="chkName" data-i18n="checkout.name">Nombre completo</label>
+                <input class="input" type="text" id="chkName" autocomplete="name" data-i18n-placeholder="checkout.namePh" placeholder="Ej. Ana Reyes">
+                <p class="field-error" id="chkNameError" hidden></p>
+              </div>
+              <div class="field-grid">
+                <div class="field-group">
+                  <label class="field-label" for="chkPhone" data-i18n="checkout.phone">Teléfono / WhatsApp</label>
+                  <input class="input" type="tel" id="chkPhone" autocomplete="tel" data-i18n-placeholder="checkout.phonePh" placeholder="Ej. 9876-5432">
+                  <p class="field-error" id="chkPhoneError" hidden></p>
+                </div>
+                <div class="field-group">
+                  <label class="field-label" for="chkEmail" data-i18n="checkout.email">Correo electrónico</label>
+                  <input class="input" type="email" id="chkEmail" autocomplete="email" data-i18n-placeholder="checkout.emailPh" placeholder="Ej. ana@correo.com">
+                  <p class="field-error" id="chkEmailError" hidden></p>
+                </div>
+              </div>
+            </section>
+
+            <!-- Paso 2 -->
+            <section class="checkout-step-panel" data-checkout-step="2">
+              <h3 data-i18n="checkout.deliveryTitle">¿Dónde te entregamos?</h3>
+              <p class="step-sub" data-i18n="checkout.deliverySub">Elige el punto y el horario que mejor te funcione.</p>
+
+              <div class="option-list" id="deliveryOptions">
+                <label class="option-card">
+                  <input type="radio" name="deliveryOption" value="unah" checked>
+                  <span class="option-check"><i class="fa-solid fa-check" aria-hidden="true"></i></span>
+                  <span class="option-body"><strong data-i18n="delivery.unah">Campus UNAH Comayagua</strong><small data-i18n="delivery.unahDesc">Punto de entrega frente a la biblioteca.</small></span>
+                  <span class="option-price"><em data-i18n="delivery.unahEta">15–25 min</em><strong data-i18n="delivery.free">Gratis</strong></span>
+                </label>
+                <label class="option-card">
+                  <input type="radio" name="deliveryOption" value="center">
+                  <span class="option-check"><i class="fa-solid fa-check" aria-hidden="true"></i></span>
+                  <span class="option-body"><strong data-i18n="delivery.center">Parque Central / Centro</strong><small data-i18n="delivery.centerDesc">Entrega en el centro histórico de Comayagua.</small></span>
+                  <span class="option-price"><em data-i18n="delivery.centerEta">25–40 min</em><strong>+ L 15.00</strong></span>
+                </label>
+                <label class="option-card">
+                  <input type="radio" name="deliveryOption" value="express">
+                  <span class="option-check"><i class="fa-solid fa-check" aria-hidden="true"></i></span>
+                  <span class="option-body"><strong data-i18n="delivery.express">Bulevar / Domicilio</strong><small data-i18n="delivery.expressDesc">Entrega a domicilio dentro de Comayagua.</small></span>
+                  <span class="option-price"><em data-i18n="delivery.expressEta">35–50 min</em><strong>+ L 30.00</strong></span>
+                </label>
+              </div>
+
+              <div class="field-group" id="addressGroup" hidden>
+                <label class="field-label" for="chkAddress" data-i18n="delivery.addressLabel">Dirección de entrega</label>
+                <input class="input" type="text" id="chkAddress" autocomplete="street-address" data-i18n-placeholder="delivery.addressPlaceholder" placeholder="Colonia, calle, número de casa y referencia">
+                <p class="field-error" id="chkAddressError" hidden></p>
+              </div>
+
+              <div class="field-grid">
+                <div class="field-group">
+                  <label class="field-label" for="chkSchedule" data-i18n="delivery.scheduleLabel">Horario de entrega</label>
+                  <select class="input" id="chkSchedule">
+                    <option value="1" data-i18n="delivery.schedule1">Hoy, 4:00–6:00 p. m.</option>
+                    <option value="2" data-i18n="delivery.schedule2">Hoy, 6:00–8:00 p. m.</option>
+                    <option value="3" data-i18n="delivery.schedule3">Mañana, 9:00–11:00 a. m.</option>
+                  </select>
+                </div>
+                <div class="field-group">
+                  <label class="field-label" for="chkNotes"><span data-i18n="delivery.notesLabel">Indicaciones adicionales</span> <span class="optional" data-i18n="common.optional">Opcional</span></label>
+                  <input class="input" type="text" id="chkNotes" data-i18n-placeholder="delivery.notesPlaceholder" placeholder="Edificio, aula, color de casa o referencia">
+                </div>
+              </div>
+            </section>
+
+            <!-- Paso 3 -->
+            <section class="checkout-step-panel" data-checkout-step="3">
+              <h3 data-i18n="checkout.paymentTitle">Método de pago</h3>
+              <p class="step-sub" data-i18n="checkout.paymentSub">El pago se coordina al entregar el pedido.</p>
+
+              <div class="option-list" id="paymentOptions">
+                <label class="option-card compact">
+                  <input type="radio" name="paymentOption" value="cash" checked>
+                  <span class="option-check"><i class="fa-solid fa-check" aria-hidden="true"></i></span>
+                  <span class="option-icon"><i class="fa-solid fa-money-bill-wave" aria-hidden="true"></i></span>
+                  <span class="option-body"><strong data-i18n="checkout.cash">Efectivo contra entrega</strong><small data-i18n="checkout.cashDesc">Paga en lempiras al recibir tu pedido.</small></span>
+                </label>
+                <label class="option-card compact">
+                  <input type="radio" name="paymentOption" value="transfer">
+                  <span class="option-check"><i class="fa-solid fa-check" aria-hidden="true"></i></span>
+                  <span class="option-icon"><i class="fa-solid fa-building-columns" aria-hidden="true"></i></span>
+                  <span class="option-body"><strong data-i18n="checkout.transfer">Transferencia bancaria</strong><small data-i18n="checkout.transferDesc">Te compartimos los datos por WhatsApp al confirmar.</small></span>
+                </label>
+                <label class="option-card compact">
+                  <input type="radio" name="paymentOption" value="card">
+                  <span class="option-check"><i class="fa-solid fa-check" aria-hidden="true"></i></span>
+                  <span class="option-icon"><i class="fa-regular fa-credit-card" aria-hidden="true"></i></span>
+                  <span class="option-body"><strong data-i18n="checkout.card">Credit / Debit Card</strong><small data-i18n="checkout.cardDesc">Secure mobile POS terminal payment upon delivery.</small></span>
+                </label>
+              </div>
+
+              <div class="card-fields" id="cardFields" hidden>
+                <div class="field-group">
+                  <label class="field-label" for="cardNumber" data-i18n="checkout.cardNumber">Card number</label>
+                  <input class="input" type="text" id="cardNumber" inputmode="numeric" autocomplete="off" maxlength="19" placeholder="0000 0000 0000 0000">
+                  <p class="field-error" id="cardNumberError" hidden></p>
+                </div>
+                <div class="field-group">
+                  <label class="field-label" for="cardName" data-i18n="checkout.cardName">Name on card</label>
+                  <input class="input" type="text" id="cardName" autocomplete="off" placeholder="NAME SURNAME">
+                  <p class="field-error" id="cardNameError" hidden></p>
+                </div>
+                <div class="field-grid">
+                  <div class="field-group">
+                    <label class="field-label" for="cardExpiry" data-i18n="checkout.cardExpiry">Expiry (MM/YY)</label>
+                    <input class="input" type="text" id="cardExpiry" inputmode="numeric" autocomplete="off" maxlength="5" placeholder="MM/YY">
+                    <p class="field-error" id="cardExpiryError" hidden></p>
+                  </div>
+                  <div class="field-group">
+                    <label class="field-label" for="cardCvv" data-i18n="checkout.cardCvv">CVV</label>
+                    <input class="input" type="password" id="cardCvv" inputmode="numeric" autocomplete="off" maxlength="4" placeholder="123">
+                    <p class="field-error" id="cardCvvError" hidden></p>
+                  </div>
+                </div>
+                <p class="demo-note"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> <span data-i18n="checkout.demoNote">Encrypted payment confirmation for your order voucher.</span></p>
+              </div>
+
+              <label class="check-line terms-line">
+                <input type="checkbox" id="chkTerms">
+                <span data-i18n="checkout.terms">Acepto que este pedido se registre localmente y que el equipo me contacte para coordinar la entrega.</span>
+              </label>
+              <p class="field-error" id="chkTermsError" hidden></p>
+            </section>
+
+            <div class="checkout-actions">
+              <button class="btn btn-secondary" type="button" data-action="checkout-back" id="checkoutBack" hidden>
+                <i class="fa-solid fa-arrow-left" aria-hidden="true"></i><span data-i18n="checkout.back">Atrás</span>
+              </button>
+              <button class="btn btn-primary" type="button" data-action="checkout-next" id="checkoutNext">
+                <span data-i18n="checkout.next">Continuar</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+              </button>
+              <button class="btn btn-primary btn-lg" type="submit" id="checkoutConfirm" hidden>
+                <i class="fa-solid fa-check" aria-hidden="true"></i><span data-i18n="checkout.confirm">Confirmar pedido</span>
+              </button>
+            </div>
+          </form>
+
+          <!-- Confirmación -->
+          <div class="checkout-success" id="checkoutSuccess" hidden>
+            <span class="success-check"><i class="fa-solid fa-check" aria-hidden="true"></i></span>
+            <h3 data-i18n="checkout.successTitle">¡Gracias por tu compra!</h3>
+            <p data-i18n="checkout.successDesc">Tu pedido quedó registrado en este dispositivo. El equipo de Catracho Ponche lo revisará y te contactará para coordinar la entrega.</p>
+            <div class="success-meta">
+              <div><span data-i18n="checkout.orderRef">Referencia</span><strong id="successOrderId">—</strong></div>
+              <div><span data-i18n="checkout.successEta">Entrega estimada</span><strong id="successEta">—</strong></div>
+            </div>
+            <div class="success-actions">
+              <button class="btn btn-primary" type="button" data-action="success-ticket"><i class="fa-solid fa-receipt" aria-hidden="true"></i><span data-i18n="checkout.viewTicket">Ver comprobante</span></button>
+              <button class="btn btn-secondary" type="button" data-action="success-continue"><span data-i18n="checkout.keepShopping">Seguir comprando</span></button>
+              <button class="btn btn-whatsapp" type="button" data-action="success-whatsapp" id="successWhatsapp" hidden><i class="fa-brands fa-whatsapp" aria-hidden="true"></i><span data-i18n="checkout.whatsapp">Enviar por WhatsApp</span></button>
+            </div>
+          </div>
+        </div>
+
+        <aside class="checkout-summary" aria-label="Resumen del pedido">
+          <h3 data-i18n="checkout.summary">Resumen del pedido</h3>
+          <div id="checkoutSummaryItems" class="summary-items"></div>
+          <div class="summary-lines">
+            <div class="summary-line"><span data-i18n="cart.subtotal">Subtotal</span><strong id="checkoutSubtotal">L 0.00</strong></div>
+            <div class="summary-line discount" id="checkoutDiscountLine" hidden><span data-i18n="cart.discount">Descuento</span><strong id="checkoutDiscount">− L 0.00</strong></div>
+            <div class="summary-line"><span data-i18n="cart.delivery">Entrega</span><strong id="checkoutDeliveryFee">Gratis</strong></div>
+            <div class="summary-line total"><span data-i18n="cart.total">Total a pagar</span><strong id="checkoutTotal">L 0.00</strong></div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       MODAL DE COMPROBANTE
+       ====================================================================== -->
+  <div class="overlay modal-overlay" id="ticketModal" data-close="ticket">
+    <div class="modal ticket-modal" role="dialog" aria-modal="true" aria-labelledby="ticketTitle">
+      <header class="modal-head print-hide">
+        <h2 id="ticketTitle" data-i18n="ticket.title">Comprobante de pedido</h2>
+        <button class="icon-btn ghost" type="button" data-action="close-ticket" aria-label="Cerrar" data-i18n-aria="ticket.close"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+      </header>
+      <div class="modal-body ticket-body">
+        <div id="ticketContent" class="ticket-paper"></div>
+      </div>
+      <footer class="modal-foot print-hide">
+        <button class="btn btn-whatsapp" type="button" data-action="ticket-whatsapp" id="ticketWhatsapp" hidden><i class="fa-brands fa-whatsapp" aria-hidden="true"></i><span data-i18n="ticket.whatsapp">Enviar por WhatsApp</span></button>
+        <button class="btn btn-secondary" type="button" data-action="print-ticket"><i class="fa-solid fa-print" aria-hidden="true"></i><span data-i18n="ticket.print">Imprimir</span></button>
+        <button class="btn btn-primary" type="button" data-action="close-ticket"><span data-i18n="ticket.close">Cerrar</span></button>
+      </footer>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       LIGHTBOX
+       ====================================================================== -->
+  <div class="overlay modal-overlay" id="lightboxModal" data-close="lightbox">
+    <div class="modal lightbox-modal" role="dialog" aria-modal="true" aria-labelledby="lightboxTitle">
+      <header class="modal-head">
+        <h2 id="lightboxTitle">Fotografía</h2>
+        <button class="icon-btn ghost" type="button" data-action="close-lightbox" aria-label="Cerrar imagen ampliada" data-i18n-aria="common.lightboxClose"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+      </header>
+      <div class="modal-body lightbox-body">
+        <img id="lightboxImg" src="" alt="Fotografía ampliada">
+        <p id="lightboxDesc"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notificaciones -->
+  <div class="toast-shelf" id="toastShelf" aria-live="polite" aria-atomic="false"></div>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
