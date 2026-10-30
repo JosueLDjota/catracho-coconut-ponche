@@ -77,6 +77,9 @@ html {
   text-rendering: optimizeLegibility;
   scrollbar-color: rgba(200, 129, 90, 0.45) var(--canvas);
   scrollbar-width: thin;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 body {
@@ -86,11 +89,17 @@ body {
   line-height: 1.55;
   letter-spacing: -0.012em;
   min-height: 100vh;
+  min-height: 100dvh;
+  width: 100%;
+  max-width: 100vw;
   overflow-x: hidden;
+  position: relative;
 }
 
+body.nav-open,
 body.modal-open {
-  overflow: hidden;
+  overflow: hidden !important;
+  touch-action: none !important;
 }
 
 img {
@@ -474,6 +483,15 @@ ul, ol {
   gap: 3px;
   flex: 1;
   min-width: 0;
+}
+.mobile-nav-header {
+  display: none;
+}
+.nav-links-wrap {
+  display: contents;
+}
+.nav-backdrop {
+  display: none;
 }
 
 .nav-link {
@@ -2963,12 +2981,16 @@ main {
   width: 100%;
   max-width: 450px;
   height: 100%;
+  height: 100dvh;
+  min-height: 100dvh;
+  max-height: 100dvh;
   display: flex;
   flex-direction: column;
   background: linear-gradient(180deg, #17100c 0%, #0f0a08 100%);
   border-left: 1px solid var(--line-strong);
   box-shadow: -24px 0 60px rgba(0, 0, 0, 0.5);
   animation: drawerIn 300ms var(--ease);
+  overscroll-behavior: contain;
 }
 @keyframes drawerIn {
   from { transform: translateX(100%); }
@@ -4256,41 +4278,97 @@ body.reveal-ready [data-reveal].is-visible {
 
 @media (max-width: 1120px) {
   .primary-nav {
-    display: none;
-    position: absolute;
-    top: calc(100% + 1px);
-    left: 14px;
-    right: 14px;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 3px;
-    padding: 10px;
-    border-radius: var(--radius-lg);
-    border: 1px solid var(--line-strong);
-    background: #110c09;
-    box-shadow: var(--shadow-lg);
-    animation: navIn 220ms var(--ease);
-    z-index: 120;
+    display: flex !important;
+    position: fixed !important;
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    left: auto !important;
+    width: 320px !important;
+    max-width: 86vw !important;
+    height: 100% !important;
+    height: 100dvh !important;
+    min-height: 100% !important;
+    background: linear-gradient(180deg, #18110D 0%, #0F0A08 100%) !important;
+    border-left: 1px solid rgba(200, 129, 90, 0.28) !important;
+    box-shadow: -18px 0 50px rgba(0, 0, 0, 0.75) !important;
+    z-index: 1000 !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    padding: 0 !important;
+    transform: translateX(105%) !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.32s ease !important;
+    overflow: hidden !important;
   }
   .site-header.nav-open .primary-nav {
-    display: flex;
+    transform: translateX(0) !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
   }
-  @keyframes navIn {
-    from { transform: translateY(-8px); }
-    to { transform: translateY(0); }
+  .mobile-nav-header {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 16px 20px !important;
+    padding-top: max(16px, env(safe-area-inset-top, 16px)) !important;
+    border-bottom: 1px solid var(--line) !important;
+    background: rgba(26, 17, 12, 0.98) !important;
+    flex-shrink: 0 !important;
+  }
+  .mobile-nav-brand {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    font-family: var(--font-display) !important;
+    font-weight: 800 !important;
+    font-size: 1.05rem !important;
+    color: var(--text) !important;
+  }
+  .mobile-nav-brand img {
+    border-radius: 8px !important;
+    border: 1px solid var(--line-strong) !important;
+  }
+  .nav-links-wrap {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 6px !important;
+    padding: 16px !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    flex: 1 1 auto !important;
   }
   .nav-link {
-    justify-content: flex-start;
-    padding: 11px 14px;
-    border-radius: var(--radius-sm);
-    font-size: 0.9rem;
+    justify-content: flex-start !important;
+    padding: 13px 16px !important;
+    border-radius: var(--radius-sm) !important;
+    font-size: 0.95rem !important;
+    min-height: 46px !important;
   }
   .nav-link-account {
-    display: inline-flex;
-    border-top: 1px solid var(--line);
-    margin-top: 4px;
-    padding-top: 13px;
-    border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+    display: inline-flex !important;
+    border-top: 1px solid var(--line) !important;
+    margin-top: 8px !important;
+    padding-top: 15px !important;
+    border-radius: 0 !important;
+  }
+  .nav-backdrop {
+    display: block !important;
+    position: fixed !important;
+    inset: 0 !important;
+    background: rgba(8, 4, 3, 0.72) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    z-index: 999 !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transition: opacity 0.3s ease !important;
+  }
+  .site-header.nav-open ~ .nav-backdrop,
+  body.nav-open .nav-backdrop {
+    opacity: 1 !important;
+    pointer-events: auto !important;
   }
   .menu-toggle {
     display: inline-flex;
@@ -4674,5 +4752,50 @@ body.reveal-ready [data-reveal].is-visible {
     box-shadow: none !important;
     border-radius: 0 !important;
     padding: 18mm !important;
+  }
+}
+
+/* ==========================================================================
+   OPTIMIZACIÓN DE ALTO RENDIMIENTO MÓVIL (Galaxy S21 Ultra & Dispositivos Táctiles)
+   - Elimina renderizado pesado de 85px Gaussian blur y partículas continuas en GPU
+   - Bloqueo estricto contra scroll horizontal
+   - Ajuste perfecto de modales y drawers a 100dvh
+   ========================================================================== */
+@media (max-width: 992px), (pointer: coarse) {
+  .ambient-blob,
+  .ambient-particles {
+    display: none !important;
+    animation: none !important;
+  }
+  .ambient {
+    animation: none !important;
+    background:
+      radial-gradient(circle at 50% 12%, rgba(200, 129, 90, 0.14) 0%, transparent 55%),
+      linear-gradient(180deg, #120c09 0%, #0d0806 40%, #080504 100%) !important;
+  }
+  .hero::before {
+    animation: none !important;
+  }
+  .hero-halo {
+    animation: none !important;
+    filter: blur(6px) !important;
+  }
+  .hero-image {
+    animation: none !important;
+  }
+  .floating-card {
+    animation: none !important;
+  }
+  .container {
+    max-width: 100% !important;
+    overflow-x: clip !important;
+  }
+  .cart-drawer {
+    width: 100% !important;
+    max-width: 100% !important;
+    border-left: none !important;
+  }
+  .modal {
+    max-height: calc(100dvh - 20px) !important;
   }
 }

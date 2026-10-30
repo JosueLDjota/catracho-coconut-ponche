@@ -980,6 +980,8 @@
     'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
   function openOverlay(id) {
+    closeNav();
+    closeSearch();
     const overlay = document.getElementById(id);
     if (!overlay) return;
     state.lastFocused = document.activeElement;
@@ -1070,6 +1072,7 @@
     const header = $("#siteHeader");
     if (!header) return;
     const open = header.classList.toggle("nav-open");
+    document.body.classList.toggle("nav-open", open);
     const toggle = $(".menu-toggle");
     if (toggle) toggle.setAttribute("aria-expanded", String(open));
   }
@@ -1078,6 +1081,7 @@
     const header = $("#siteHeader");
     if (!header) return;
     header.classList.remove("nav-open");
+    document.body.classList.remove("nav-open");
     const toggle = $(".menu-toggle");
     if (toggle) toggle.setAttribute("aria-expanded", "false");
   }
@@ -2690,8 +2694,10 @@
 
     const actionElement = event.target.closest("[data-action]");
     if (!actionElement) {
-      if (!event.target.closest(".site-header")) {
+      if (!event.target.closest(".primary-nav") && !event.target.closest(".menu-toggle")) {
         closeNav();
+      }
+      if (!event.target.closest(".site-header")) {
         closeSearch();
       }
       return;

@@ -63,24 +63,35 @@
       </a>
 
       <nav class="primary-nav" id="primaryNav" aria-label="Navegación principal">
-        <button class="nav-link active" type="button" data-action="switch-view" data-view="menu" data-nav-view="menu">
-          <i class="fa-solid fa-mug-hot" aria-hidden="true"></i><span data-i18n="nav.menu">Menú</span>
-        </button>
-        <button class="nav-link" type="button" data-action="switch-view" data-view="heritage" data-nav-view="heritage">
-          <i class="fa-solid fa-award" aria-hidden="true"></i><span data-i18n="nav.heritage">Historia</span>
-        </button>
-        <button class="nav-link" type="button" data-action="switch-view" data-view="craft" data-nav-view="craft">
-          <i class="fa-solid fa-flask-vial" aria-hidden="true"></i><span data-i18n="nav.craft">Proceso</span>
-        </button>
-        <button class="nav-link" type="button" data-action="switch-view" data-view="calculator" data-nav-view="calculator">
-          <i class="fa-solid fa-calculator" aria-hidden="true"></i><span data-i18n="nav.catering">Eventos</span>
-        </button>
-        <button class="nav-link" type="button" data-action="switch-view" data-view="team" data-nav-view="team">
-          <i class="fa-solid fa-users" aria-hidden="true"></i><span data-i18n="nav.team">Equipo</span>
-        </button>
-        <button class="nav-link nav-link-account" type="button" data-action="open-account" data-nav-view="account">
-          <i class="fa-solid fa-user" aria-hidden="true"></i><span data-i18n="nav.account">Mi cuenta</span>
-        </button>
+        <div class="mobile-nav-header">
+          <div class="mobile-nav-brand">
+            <img src="assets/img/logo-160.webp" alt="Catracho Ponche" width="34" height="34">
+            <span>Catracho Ponche</span>
+          </div>
+          <button class="icon-btn ghost mobile-nav-close" type="button" data-action="toggle-nav" aria-label="Cerrar menú">
+            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div class="nav-links-wrap">
+          <button class="nav-link active" type="button" data-action="switch-view" data-view="menu" data-nav-view="menu">
+            <i class="fa-solid fa-mug-hot" aria-hidden="true"></i><span data-i18n="nav.menu">Menú</span>
+          </button>
+          <button class="nav-link" type="button" data-action="switch-view" data-view="heritage" data-nav-view="heritage">
+            <i class="fa-solid fa-award" aria-hidden="true"></i><span data-i18n="nav.heritage">Historia</span>
+          </button>
+          <button class="nav-link" type="button" data-action="switch-view" data-view="craft" data-nav-view="craft">
+            <i class="fa-solid fa-flask-vial" aria-hidden="true"></i><span data-i18n="nav.craft">Proceso</span>
+          </button>
+          <button class="nav-link" type="button" data-action="switch-view" data-view="calculator" data-nav-view="calculator">
+            <i class="fa-solid fa-calculator" aria-hidden="true"></i><span data-i18n="nav.catering">Eventos</span>
+          </button>
+          <button class="nav-link" type="button" data-action="switch-view" data-view="team" data-nav-view="team">
+            <i class="fa-solid fa-users" aria-hidden="true"></i><span data-i18n="nav.team">Equipo</span>
+          </button>
+          <button class="nav-link nav-link-account" type="button" data-action="open-account" data-nav-view="account">
+            <i class="fa-solid fa-user" aria-hidden="true"></i><span data-i18n="nav.account">Mi cuenta</span>
+          </button>
+        </div>
       </nav>
 
       <div class="header-actions">
@@ -117,6 +128,9 @@
       </div>
     </div>
   </header>
+
+  <!-- Telón de fondo para menú móvil -->
+  <div class="nav-backdrop" id="navBackdrop" data-action="toggle-nav" aria-hidden="true"></div>
 
   <!-- ======================================================================
        CONTENIDO PRINCIPAL
