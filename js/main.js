@@ -1106,6 +1106,7 @@
   }
 
   function openAccount() {
+    closeNav();
     if (currentUser()) switchView("account");
     else openAuth("login", "account");
   }

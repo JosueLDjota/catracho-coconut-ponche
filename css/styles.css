@@ -4277,6 +4277,21 @@ body.reveal-ready [data-reveal].is-visible {
 }
 
 @media (max-width: 1120px) {
+  .site-header.nav-open {
+    z-index: 1001 !important;
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border-bottom-color: transparent !important;
+    box-shadow: none !important;
+    pointer-events: none !important;
+  }
+  .site-header.nav-open .brand,
+  .site-header.nav-open .header-actions {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
   .primary-nav {
     display: flex !important;
     position: fixed !important;
@@ -4292,7 +4307,7 @@ body.reveal-ready [data-reveal].is-visible {
     background: linear-gradient(180deg, #18110D 0%, #0F0A08 100%) !important;
     border-left: 1px solid rgba(200, 129, 90, 0.28) !important;
     box-shadow: -18px 0 50px rgba(0, 0, 0, 0.75) !important;
-    z-index: 1000 !important;
+    z-index: 1002 !important;
     flex-direction: column !important;
     align-items: stretch !important;
     padding: 0 !important;
@@ -4301,6 +4316,7 @@ body.reveal-ready [data-reveal].is-visible {
     pointer-events: none !important;
     transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.32s ease !important;
     overflow: hidden !important;
+    touch-action: pan-y !important;
   }
   .site-header.nav-open .primary-nav {
     transform: translateX(0) !important;
@@ -4330,6 +4346,10 @@ body.reveal-ready [data-reveal].is-visible {
     border-radius: 8px !important;
     border: 1px solid var(--line-strong) !important;
   }
+  .mobile-nav-close {
+    cursor: pointer !important;
+    touch-action: manipulation !important;
+  }
   .nav-links-wrap {
     display: flex !important;
     flex-direction: column !important;
@@ -4338,6 +4358,8 @@ body.reveal-ready [data-reveal].is-visible {
     overflow-y: auto !important;
     -webkit-overflow-scrolling: touch !important;
     flex: 1 1 auto !important;
+    touch-action: pan-y !important;
+    overscroll-behavior: contain !important;
   }
   .nav-link {
     justify-content: flex-start !important;
@@ -4345,6 +4367,8 @@ body.reveal-ready [data-reveal].is-visible {
     border-radius: var(--radius-sm) !important;
     font-size: 0.95rem !important;
     min-height: 46px !important;
+    cursor: pointer !important;
+    touch-action: manipulation !important;
   }
   .nav-link-account {
     display: inline-flex !important;
@@ -4364,6 +4388,8 @@ body.reveal-ready [data-reveal].is-visible {
     opacity: 0 !important;
     pointer-events: none !important;
     transition: opacity 0.3s ease !important;
+    cursor: pointer;
+    touch-action: none !important;
   }
   .site-header.nav-open ~ .nav-backdrop,
   body.nav-open .nav-backdrop {
