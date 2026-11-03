@@ -87,7 +87,13 @@
     express: { fee: 30, labelKey: "delivery.express", etaKey: "delivery.expressEta", requiresAddress: true }
   };
 
-  const VALID_COUPONS = { UNAH2026: 10, PONCHE10: 10, CATRACHO15: 15 };
+  const VALID_COUPONS = {
+    UNAH2026: 10,
+    PONCHE10: 10,
+    CATRACHO15: 15,
+    TRADICION20: 20,
+    FIESTA25: 25
+  };
   const VIEWS = ["menu", "heritage", "craft", "calculator", "team", "account"];
 
   const STORAGE = {
